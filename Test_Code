@@ -1,0 +1,11 @@
+import unittest
+from meu_pacote.processamento import aplicar_filtro
+
+class TestProcessamento(unittest.TestCase):
+
+    def test_aplicar_filtro(self):
+        output = aplicar_filtro('imagem_teste.png', 'blur')
+        self.assertTrue(output.endswith('.png'))
+
+if __name__ == '__main__':
+    unittest.main()
