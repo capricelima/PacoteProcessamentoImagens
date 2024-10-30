@@ -1,0 +1,41 @@
+pacote_processamento/
+│
+├── pacote_processamento/
+│   ├── __init__.py
+│   └── processamento.py
+│
+├── tests/
+│   └── test_processamento.py
+│
+├── setup.py
+└── README.md
+
+from PIL import Image, ImageFilter
+
+def aplicar_filtro(image_path: str, filtro: str) -> str:
+    imagem = Image.open(image_path)
+    if filtro == 'blur':
+        imagem = imagem.filter(ImageFilter.BLUR)
+    elif filtro == 'sharpen':
+        imagem = imagem.filter(ImageFilter.SHARPEN)
+    else:
+        raise ValueError("Filtro desconhecido: use 'blur' ou 'sharpen'")
+    
+    output_path = f'output_{filtro}.png'
+    imagem.save(output_path)
+    return output_path
+
+from setuptools import setup, find_packages
+
+setup(
+    name='meu_pacote',
+    version='0.1',
+    author='Seu Nome',
+    author_email='seuemail@example.com',
+    description='Um pacote simples para processamento de imagens.',
+    packages=find_packages(),
+    install_requires=[
+        'Pillow',
+    ],
+)
+
